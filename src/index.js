@@ -1,12 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.module.css' // PostCSS
-import App from './App'
+import App from './app'
 import reportWebVitals from './reportWebVitals'
+import { firebaseApp } from './service/firebase'
+import AuthService from './service/auth_service' // Dependency Injection
+
+// Dependency Injection
+const authService = new AuthService(firebaseApp)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App authService={authService} />
   </React.StrictMode>,
   document.getElementById('root'),
 )

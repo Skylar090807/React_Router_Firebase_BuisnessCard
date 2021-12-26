@@ -1,0 +1,32 @@
+@value makerLightPink, makerWhite, makerLightGrey, makerWheat from '../../common/colors.css';
+
+.header {
+  width: 100%;
+  text-align: center;
+  padding: 0.5em;
+  background-color: makerLightPink;
+  position: relative;
+}
+
+.title {
+  text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px, #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px,
+    #ff2d95 0px 0px 40px, #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+  color: #ffffff;
+}
+
+.logo {
+  width: 3em;
+}
+
+.logout {
+  position: absolute;
+  right: 3em;
+  top: 1em;
+  padding: 0.8em;
+  border-radius: 40%;
+  outline: 0;
+  border: 0;
+  background-color: darkgrey;
+  color: makerWhite;
+  cursor: pointer;
+}
