@@ -7,6 +7,41 @@ import Preview from '../preview/preview'
 import styles from './maker.module.css'
 
 const Maker = ({ authService }) => {
+  const [cards, setCards] = useState([
+    {
+      id: '1',
+      name: 'Skylar',
+      company: 'PurpleSeed',
+      theme: 'dark',
+      title: 'FrontEnd Developer',
+      email: 'skylar@purpleseed.co.kr',
+      message: 'Never say Never',
+      fileName: 'skylar',
+      fileURL: 'null',
+    },
+    {
+      id: '2',
+      name: 'Skylar2',
+      company: 'PurpleSeed',
+      theme: 'light',
+      title: 'FrontEnd Developer',
+      email: 'skylar@purpleseed.co.kr',
+      message: 'Never say Never',
+      fileName: 'skylar',
+      fileURL: 'skylar.png',
+    },
+    {
+      id: '3',
+      name: 'Skylar3',
+      company: 'PurpleSeed',
+      theme: 'colorful',
+      title: 'FrontEnd Developer',
+      email: 'skylar@purpleseed.co.kr',
+      message: 'Never say Never',
+      fileName: 'skylar',
+      fileURL: 'null',
+    },
+  ])
   const navigate = useNavigate()
   const onLogout = () => {
     authService.logout()
@@ -23,8 +58,8 @@ const Maker = ({ authService }) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor />
-        <Preview />
+        <Editor cards={cards} />
+        <Preview cards={cards} />
       </div>
       <Footer />
     </section>
