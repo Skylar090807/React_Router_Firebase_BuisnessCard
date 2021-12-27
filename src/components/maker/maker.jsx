@@ -17,7 +17,7 @@ const Maker = ({ authService }) => {
       email: 'skylar@purpleseed.co.kr',
       message: 'Never say Never',
       fileName: 'skylar',
-      fileURL: 'null',
+      fileURL: '',
     },
     {
       id: '2',
@@ -28,7 +28,7 @@ const Maker = ({ authService }) => {
       email: 'skylar@purpleseed.co.kr',
       message: 'Never say Never',
       fileName: 'skylar',
-      fileURL: 'skylar.png',
+      fileURL: '',
     },
     {
       id: '3',
@@ -39,7 +39,7 @@ const Maker = ({ authService }) => {
       email: 'skylar@purpleseed.co.kr',
       message: 'Never say Never',
       fileName: 'skylar',
-      fileURL: 'null',
+      fileURL: '',
     },
   ])
   const navigate = useNavigate()
@@ -54,11 +54,16 @@ const Maker = ({ authService }) => {
       }
     })
   })
+
+  const addCard = (card) => {
+    const updated = [...cards, card]
+    setCards(updated)
+  }
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor cards={cards} />
+        <Editor cards={cards} addCard={addCard} />
         <Preview cards={cards} />
       </div>
       <Footer />
