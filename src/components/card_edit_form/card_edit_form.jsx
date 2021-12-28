@@ -14,6 +14,14 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
 
   const { name, company, title, email, message, theme, fileName, fileURL } = card
 
+  const onFileChange = (file) => {
+    updateCard({
+      ...card, //spread operator
+      fileName: file.name,
+      fileURL: file.url,
+    })
+  }
+
   //input에서 변경 사항이 생기면 onChange가 발생한다. 이때 내가 정의해둔 함수 onChange가 호출 된다.
   const onChange = (event) => {
     if (event.currentTarget == null) {
@@ -44,7 +52,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
       <input className={styles.input} type="text" name="email" ref={emailRef} value={email} onChange={onChange} />
       <textarea className={styles.textarea} ref={messageRef} name="message" value={message} onChange={onChange} />
       <div className={styles.fileInput}>
-        <FileInput />
+        <FileInput name={fileName} onFileChange={onFileChange} />
       </div>
       <Button name="Delete" onClick={onSubmit} />
     </form>
