@@ -7,10 +7,12 @@ import { firebaseApp } from './service/firebase'
 import AuthService from './service/auth_service' // Dependency Injection
 import ImageUploader from './service/image_uploader'
 import ImageFileInput from './components/image_file_input/image_file_input'
+import CardRepository from './service/card_repository'
 
 // Dependency Injection
 const authService = new AuthService(firebaseApp)
 //
+const cardRepository = new CardRepository()
 const imageUploader = new ImageUploader()
 const FileInput = (props) => <ImageFileInput {...props} imageUploader={imageUploader} />
 //component를 index에 prop으로 받아와서 쓸 때의 장점: 쓸데없이 많은 서비스를 전달하지 않아도 된다.
@@ -18,7 +20,7 @@ const FileInput = (props) => <ImageFileInput {...props} imageUploader={imageUplo
 
 ReactDOM.render(
   <React.StrictMode>
-    <App authService={authService} FileInput={FileInput} />
+    <App authService={authService} FileInput={FileInput} cardRepository={cardRepository} />
     {/* FileInput처럼 component prop은 대문자로 시작. */}
   </React.StrictMode>,
   document.getElementById('root'),

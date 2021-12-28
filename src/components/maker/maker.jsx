@@ -6,53 +6,62 @@ import Header from '../header/header'
 import Preview from '../preview/preview'
 import styles from './maker.module.css'
 
-const Maker = ({ FileInput, authService }) => {
+// Maker는 APP에서 쓰이고 있다.
+const Maker = ({ FileInput, authService, cardRepository }) => {
   const [cards, setCards] = useState({
-    1: {
-      id: '1',
-      name: 'Skylar',
-      company: 'PurpleSeed',
-      theme: 'dark',
-      title: 'FrontEnd Developer',
-      email: 'skylar@purpleseed.co.kr',
-      message: 'Never say Never',
-      fileName: 'skylar',
-      fileURL: '',
-    },
-
-    2: {
-      id: '2',
-      name: 'Skylar2',
-      company: 'PurpleSeed',
-      theme: 'light',
-      title: 'FrontEnd Developer',
-      email: 'skylar@purpleseed.co.kr',
-      message: 'Never say Never',
-      fileName: 'skylar',
-      fileURL: '',
-    },
-
-    3: {
-      id: '3',
-      name: 'Skylar3',
-      company: 'PurpleSeed',
-      theme: 'colorful',
-      title: 'FrontEnd Developer',
-      email: 'skylar@purpleseed.co.kr',
-      message: 'Never say Never',
-      fileName: 'skylar',
-      fileURL: '',
-    },
+    // Card Preview test
+    // 1: {
+    //   id: '1',
+    //   name: 'Skylar',
+    //   company: 'PurpleSeed',
+    //   theme: 'dark',
+    //   title: 'FrontEnd Developer',
+    //   email: 'skylar@purpleseed.co.kr',
+    //   message: 'Never say Never',
+    //   fileName: 'skylar',
+    //   fileURL: '',
+    // },
+    // 2: {
+    //   id: '2',
+    //   name: 'Skylar2',
+    //   company: 'PurpleSeed',
+    //   theme: 'light',
+    //   title: 'FrontEnd Developer',
+    //   email: 'skylar@purpleseed.co.kr',
+    //   message: 'Never say Never',
+    //   fileName: 'skylar',
+    //   fileURL: '',
+    // },
+    // 3: {
+    //   id: '3',
+    //   name: 'Skylar3',
+    //   company: 'PurpleSeed',
+    //   theme: 'colorful',
+    //   title: 'FrontEnd Developer',
+    //   email: 'skylar@purpleseed.co.kr',
+    //   message: 'Never say Never',
+    //   fileName: 'skylar',
+    //   fileURL: '',
+    // },
   })
-
   const navigate = useNavigate()
+  const navigateState = useNavigate().state
+  const [userID, setUserID] = useState(navigateState && navigateState.id)
+
   const onLogout = () => {
     authService.logout()
   }
 
   useEffect(() => {
+    if (!userID) {
+    }
+  }, [userID, cardRepository])
+
+  useEffect(() => {
     authService.onAuthChange((user) => {
-      if (!user) {
+      if (user) {
+        setUserID(user.uid)
+      } else {
         navigate('/')
       }
     })
@@ -64,6 +73,7 @@ const Maker = ({ FileInput, authService }) => {
       updated[card.id] = card
       return updated
     })
+    cardRepository.saveCard(userID, card) //CradRepository saveCard
   }
 
   const deleteCard = (card) => {
@@ -72,6 +82,7 @@ const Maker = ({ FileInput, authService }) => {
       delete updated[card.id]
       return updated
     })
+    cardRepository.removeCard(userID, card)
   }
   return (
     <section className={styles.maker}>

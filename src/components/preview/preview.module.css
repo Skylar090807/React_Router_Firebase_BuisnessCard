@@ -2,6 +2,8 @@
 
 .preview {
   flex-basis: 50%;
+  /* card preview scroll */
+  overflow-y: auto;
 }
 
 .title {

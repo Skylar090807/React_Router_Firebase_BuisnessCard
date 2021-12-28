@@ -30,3 +30,7 @@
   color: makerWhite;
   cursor: pointer;
 }
+
+.logout:hover {
+  opacity: 0.8em;
+}
