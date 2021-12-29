@@ -29,8 +29,13 @@
   background-color: darkgrey;
   color: makerWhite;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .logout:hover {
-  opacity: 0.8em;
+  box-shadow: 5px 5px 15px 5px #ff8080, 12px -5px 15px 5px #80c7ff, 12px 10px 15px 7px #e488ff,
+    -10px -7px 27px 1px #8e5cff, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  background-color: makerWhite;
+  color: darkgrey;
+  font-weight: bold;
 }
